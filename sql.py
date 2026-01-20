@@ -1,7 +1,7 @@
 import psycopg2
 from ETL_pib import df_pib_muni,df_gini, df_pib_estadual
 from população import df_pop
-from conexão import conexao
+from conexao import conexao
 
 def executar_sql():
     cur = conexao.cursor()
