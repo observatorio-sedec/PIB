@@ -251,37 +251,16 @@ def executando_dados_2(tabela):
 
 dados_limpos_37, dados_limpos_543, dados_limpos_498, dados_limpos_513, dados_limpos_517, dados_limpos_6575, dados_limpos_525 = executando_dados(5938, True)
 df_pib_muni = gerando_dataframe5938(dados_limpos_37, dados_limpos_543, dados_limpos_498, dados_limpos_513, dados_limpos_517, dados_limpos_6575, dados_limpos_525)
-df_pib_muni.to_excel(ROOT_PATH / 'dados_PIB_municipais.xlsx')
+# df_pib_muni.to_excel(ROOT_PATH / 'dados_PIB_municipais.xlsx')
 
 dados_limpos_37_estadual, dados_limpos_543_estadual, dados_limpos_498_estadual, dados_limpos_513_estadual, dados_limpos_517_estadual, dados_limpos_6575_estadual, dados_limpos_525_estadual = executando_dados(5938, False)
 df_pib_estadual = gerando_dataframe5938(dados_limpos_37_estadual, dados_limpos_543_estadual, dados_limpos_498_estadual, dados_limpos_513_estadual, dados_limpos_517_estadual, dados_limpos_6575_estadual, dados_limpos_525_estadual)
-df_pib_estadual.to_excel(ROOT_PATH / 'dados_PIB_estaduais.xlsx')
+# df_pib_estadual.to_excel(ROOT_PATH / 'dados_PIB_estaduais.xlsx')
 
 dados_limpos_529, dados_limpos_531, dados_limpos_532, dados_limpos_6568, dados_limpos_534  = executando_dados_2(5939)
 df_gini = gerando_dataframe5939(dados_limpos_529, dados_limpos_531, dados_limpos_532, dados_limpos_6568, dados_limpos_534)
-df_gini.to_excel(ROOT_PATH / 'dados_PIB_gini.xlsx')
+# df_gini.to_excel(ROOT_PATH / 'dados_PIB_gini.xlsx')
 
-#MELHORANDO VISUAL DA PLANILHA
-wb_pib = openpyxl.load_workbook(ROOT_PATH / 'dados_PIB_municipais.xlsx')
-ws_pib = wb_pib.active
-ajustar_bordas(wb_pib)
-ajustar_colunas(ws_pib)
-
-wb_pib.save(ROOT_PATH / 'dados_PIB_municipais.xlsx')
-
-wb_pib = openpyxl.load_workbook(ROOT_PATH / 'dados_PIB_estaduais.xlsx')
-ws_pib = wb_pib.active
-ajustar_bordas(wb_pib)
-ajustar_colunas(ws_pib)
-
-wb_pib.save(ROOT_PATH / 'dados_PIB_estaduais.xlsx')
-
-wb_pib = openpyxl.load_workbook(ROOT_PATH / 'dados_PIB_gini.xlsx')
-ws_pib = wb_pib.active
-ajustar_bordas(wb_pib)
-ajustar_colunas(ws_pib)
-
-wb_pib.save(ROOT_PATH / 'dados_PIB_gini.xlsx')
 
 if __name__ == '__main__':
     from sql import executar_sql 

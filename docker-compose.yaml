@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:16
+    image: postgres:18.1
     container_name: postgres_pib
     restart: always
     environment:
@@ -8,11 +8,11 @@ services:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "5432:5432"
+      - "${DB_PORT}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - scraper_net
+      - pib_scraper_net
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 5s
@@ -20,23 +20,20 @@ services:
       retries: 5
 
   etl_pib:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      image: etl_pib:latest
-      container_name: scraper_pib
-      env_file:
-        - .env
-      depends_on:
-        postgres:
-          condition: service_healthy
-      networks:
-        - scraper_net
+    build: .
+    image: etl_pib:latest
+    command: ["python", "ETL_pib.py"]
+    container_name: scraper_pib
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - pib_scraper_net
 
 volumes:
   pgdata:
 
 networks:
-  scraper_net:
+  pib_scraper_net:
     driver: bridge
 
