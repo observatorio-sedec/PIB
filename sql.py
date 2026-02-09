@@ -142,7 +142,7 @@ def executar_sql():
     VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) 
     '''
     try:
-        for idx, i in df_pib_muni.iterrows():
+        for i in df_pib_muni.iter_rows(named=True):
             dados = (
                 i['id'],
                 i['local'],
@@ -166,7 +166,7 @@ def executar_sql():
     VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) 
     '''
     try:
-        for idx, i in df_pib_estadual.iterrows():
+        for i in df_pib_estadual.iter_rows(named=True):
             dados = (
                 i['id'],
                 i['local'],
@@ -207,7 +207,7 @@ def executar_sql():
     '''
 
     try:
-        for idx, i in df_gini.iterrows():
+        for i in df_gini.iter_rows(named=True):
             dados = (
                 i['id'],
                 i['local'],
